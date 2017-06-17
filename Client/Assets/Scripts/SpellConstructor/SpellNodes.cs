@@ -4,38 +4,24 @@ using UnityEngine;
 
 
 abstract public class SpellNode {
-    protected SpellNode(float coordX, float coordY, float coordZ) {
-        location = new Point(coordX, coordY, coordZ);
-    }
 
-    public Point location;
-
-    public class Point {
-        public Point(float coordX, float coordY, float coordZ) {
-            x = coordX;
-            y = coordY;
-            z = coordZ;
-        }
-
-        float x;
-        float y;
-        float z;
-    }
 }
 
 public class EnergyNode : SpellNode {
-    public EnergyNode(float coordX, float coordY, float coordZ, float energyCapacity) : base(coordX, coordY, coordZ) {
+    public EnergyNode(float energyCapacity) {
         this.energyCapacity = energyCapacity;
     }
 
+    public static readonly float standartCapacity = 10f;
     float energyCapacity;
 }
 
 public class EmitterNode : SpellNode {
-    public EmitterNode(float coordX, float coordY, float coordZ, float emittingSpeed) : base(coordX, coordY, coordZ) {
+    public EmitterNode(float emittingSpeed) {
         this.emittingSpeed = emittingSpeed;
     }
 
+    public static readonly float standartSpeed = 10f;
     float emittingSpeed;
 }
 
