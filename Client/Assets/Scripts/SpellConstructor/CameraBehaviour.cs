@@ -35,7 +35,7 @@ public class CameraBehaviour : MonoBehaviour {
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (target)
         {

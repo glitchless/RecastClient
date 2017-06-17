@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class UI : MonoBehaviour {
     public GameObject node;
-    public GameObject carriedNode;
+    GameObject carriedNode;
     bool carryingNode;
     // Use this for initialization
     public void CreateNode ()
     {
-        carryingNode = false;
-        var newNode = Instantiate(node, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);//new Vector3(0, 12, 0), Quaternion.identity);
+        carriedNode = Instantiate(node, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);//new Vector3(0, 12, 0), Quaternion.identity);
+        carryingNode = true;
         Debug.Log("WTF");
     }
 
     // Update is called once per frame
     void Update () {
-		while
+		if (carryingNode) {
+            carriedNode.transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane * 5));
+            if (Input.GetMouseButtonDown(0))
+                carryingNode = false;
+            if (Input.GetMouseButtonDown(2)) {
+                carryingNode = false;
+                Destroy(carriedNode);
+            }
+        }
 	}
 }
