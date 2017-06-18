@@ -23,8 +23,7 @@ public class CameraBehaviour : MonoBehaviour {
     float velocityY = 0.0f;
 
     // Use this for initialization
-    void Start()
-    {
+    void Start() {
         Vector3 angles = transform.eulerAngles;
         rotationYAxis = angles.y;
         rotationXAxis = angles.x;
@@ -35,8 +34,7 @@ public class CameraBehaviour : MonoBehaviour {
         }
     }
 
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         if (target)
         {
             if (Input.GetMouseButton(1))
@@ -61,9 +59,8 @@ public class CameraBehaviour : MonoBehaviour {
             velocityY = Mathf.Lerp(velocityY, 0, Time.deltaTime * 1f / smoothTime * (float)System.Math.Sqrt(distance));
         }
     }
-
-    public static float ClampAngle(float angle, float min, float max) //Limits the value of an angle
-    {
+    //Limits the value of an angle 
+    public static float ClampAngle(float angle, float min, float max) {
         if (angle < -360F) 
             angle += 360F;
         if (angle > 360F)
