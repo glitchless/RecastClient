@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[InitializeOnLoad]
+//[InitializeOnLoad]
 public static class ConstructorContext {
 
     // Use this for initialization

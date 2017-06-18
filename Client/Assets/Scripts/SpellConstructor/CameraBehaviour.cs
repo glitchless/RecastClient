@@ -1,9 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine;
-using System.Collections;
-using System.Reflection;
-using System;
-using System.IO;
 
 [AddComponentMenu("Camera-Control/Mouse drag Orbit with zoom")]
 public class CameraBehaviour : MonoBehaviour {
