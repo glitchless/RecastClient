@@ -4,8 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
-{
+public class DragMe : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 	public bool dragOnSurfaces = true;
 	
 	private Dictionary<int,GameObject> m_DraggingIcons = new Dictionary<int, GameObject>();
