@@ -29,7 +29,7 @@ public class CameraBehaviour : MonoBehaviour {
         }
     }
 
-    void FixedUpdate() {
+    void Update() {
         if (target)
         {
             if (Input.GetMouseButton(1))

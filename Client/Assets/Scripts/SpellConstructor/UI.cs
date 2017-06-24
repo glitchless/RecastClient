@@ -6,12 +6,20 @@ public class UI : MonoBehaviour {
     public GameObject powerNode;
     public GameObject emitterNode;
 
+    void Start () {
+        Controller.Instance.initiate();
+    }
+
     public void CreatePowerNode () {
-        Debug.Assert(Controller.Instance.carryNode(powerNode));
+        if (Controller.Instance.state != Controller.status.linkingNodes) {
+            Debug.Assert(Controller.Instance.carryNode(powerNode));
+        }
     }
 
     public void CreateEmitterNode() {
-        Debug.Assert(Controller.Instance.carryNode(emitterNode));
+        if (Controller.Instance.state != Controller.status.linkingNodes) {
+            Debug.Assert(Controller.Instance.carryNode(emitterNode));
+        }
     }
 
     // Update is called once per frame
