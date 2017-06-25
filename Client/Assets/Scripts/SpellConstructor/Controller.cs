@@ -158,13 +158,11 @@ public class Controller : Singleton<Controller> {
         state = status.none;
     }
 
-    public bool carryNode<T> (GameObject node, SpellNode.types nodeType) where T : SpellNode {
-        var nodeBehaviour = node.GetComponentInChildren<NodeBehaviour>();
-        if (nodeBehaviour) {
+    public bool carryNode(GameObject node) {
+        if (node.GetComponentInChildren<NodeBehaviour>()) {
             if (state != status.carryingNode) {
                 carriedNode = Instantiate(node, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
                 carriedNode.layer = DefaultLayer;
-                nodeBehaviour.node = new T;
                 state = status.carryingNode;
                 return true;
             }
@@ -208,8 +206,6 @@ public class Controller : Singleton<Controller> {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float rayRadius = NodeBehaviour.nodeRadius;
             if (!Physics.SphereCast(ray, rayRadius, out hit, distance, layerMask)) {
-                var currentNode = carriedNode.GetComponent<NodeBehaviour>();
-                Debug.Log(currentNode.node.type);
                 state = status.none;
                 carriedNode.layer = NodeLayer;
             }
