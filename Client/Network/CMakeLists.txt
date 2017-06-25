@@ -3,6 +3,8 @@ project(Recast-client)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include_directories(headers)
+
 file(GLOB_RECURSE SOURCE_FILES
         "headers/*.h"
         "headers/*.hpp"
