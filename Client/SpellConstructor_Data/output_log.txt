@@ -1,0 +1,42 @@
+Initialize engine version: 5.6.1f1 (2860b30f0b54)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 750 (ID=0x1381)
+    Vendor:   NVIDIA
+    VRAM:     972 MB
+    Driver:   21.21.13.7633
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.020 seconds
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Projects\RecastClient\Client\SpellConstructor_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.957107 ms
+[Singleton] An instance of Controller is needed in the scene, so '(singleton) Controller (UnityEngine.GameObject)' was created with DontDestroyOnLoad.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UI.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at UI.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2784 -> priority: 1 
+  Thread -> id: 26fc -> priority: 1 
