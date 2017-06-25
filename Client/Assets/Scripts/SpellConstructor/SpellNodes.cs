@@ -3,18 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-struct Point {
-    Point(float x, float y, float z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-    
-    float x;
-    float y;
-    float z;
-}
-
 public class Link: System.IEquatable<Link> {
     public Link (Vector3 start) {
         this.start = start;
@@ -38,37 +26,30 @@ public class Link: System.IEquatable<Link> {
     }
 }
 
-abstract public class SpellNode {
-    public SpellNode () {}
+public class SpellNode {
+    public SpellNode () {
+        this.links = new List<Link>();
+    }
+    public Vector3 position;
     public List<Link> links;
     public uint id;
-    public enum types {
-        commonNode,
-        energyNode,
-        heaterNode,
-        aimNode
-    }
-
-    public types type = types.commonNode;
+    public static readonly Dictionary<string, uint> typeToId = new Dictionary<string, uint> { { "SpellNode", 0 }, { "EnergyNode", 1 }, { "HeaterNode", 2 }, { "AimNode", 3 } };
 }
 
 public class EnergyNode : SpellNode {
-    public EnergyNode() {}
-    public new types type = types.energyNode;
+    public EnergyNode() : base() {}
    // public const float standartCapacity = 10f;
     //protected float energyCapacity;
 }
 
 public class HeaterNode : EnergyNode {
-    public HeaterNode() {}
-    public new types type = types.heaterNode;
+    public HeaterNode() : base() {}
     //public const float standartSpeed = 10f;
     //float emittingSpeed;
 }
 
 public class AimNode : EnergyNode {
-    public AimNode() {}
-    public new types type = types.aimNode;
+    public AimNode() : base() {}
     //public const float standartForce = 10f;
     //float moveForce;
 }

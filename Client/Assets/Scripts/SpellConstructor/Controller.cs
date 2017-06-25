@@ -26,8 +26,8 @@ public class Controller : Singleton<Controller> {
     GameObject linkVisual;
     public GameObject linkBeginning;
     public GameObject linkTarget;
-
     GameObject carriedNode;
+    List<SpellNode> nodesPlaced;
     int NodeLayer;
     int DefaultLayer = 0;
     bool showError = false;
@@ -42,6 +42,7 @@ public class Controller : Singleton<Controller> {
         state = status.none;
         previousState = status.none;
         NodeLayer = LayerMask.NameToLayer("Nodes");
+        nodesPlaced = new List<SpellNode>();
     }
 
     void OnGUI() {
@@ -146,7 +147,9 @@ public class Controller : Singleton<Controller> {
                 Debug.Log("Link" + ":" + link.start + " " + link.end);
                 Debug.Log("Link is " + link.Equals(currentLink) + " to current");
             }
+            currentLink.endId = endNode.node.id;
             startNode.node.links.Add(currentLink);
+            currentLink.endId = startNode.node.id;
             endNode.node.links.Add(currentLink.reverse());
         }
         else {
@@ -158,29 +161,25 @@ public class Controller : Singleton<Controller> {
         state = status.none;
     }
 
-    public bool carryNode<T> (GameObject node, SpellNode.types nodeType) where T : SpellNode {
-        var nodeBehaviour = node.GetComponentInChildren<NodeBehaviour>();
+    public bool carryNode<T> (GameObject node) where T : SpellNode, new() {
+        var nodeBehaviour = node.GetComponent<NodeBehaviour>();
         if (nodeBehaviour) {
-            if (state != status.carryingNode) {
-                carriedNode = Instantiate(node, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
-                carriedNode.layer = DefaultLayer;
-                nodeBehaviour.node = new T;
-                state = status.carryingNode;
-                return true;
-            }
-            else {
+            if (state == status.carryingNode) {
                 Destroy(carriedNode);
-                carriedNode = Instantiate(node, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
-                carriedNode.layer = DefaultLayer;
-                state = status.carryingNode;
-                return true;
             }
+            carriedNode = Instantiate(node, Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane)), Quaternion.identity);
+            nodeBehaviour = carriedNode.GetComponent<NodeBehaviour>();
+            nodeBehaviour.node = new T();
+            nodeBehaviour.node.id = (uint)nodesPlaced.Count;
+            carriedNode.layer = DefaultLayer;
+            state = status.carryingNode;
+            return true;
         }
-        return false;
+        else
+            return false;
     }
 
     void nodeDragUpdate() {
-        var canvas = GetComponent<Canvas>();
         carriedNode.transform.position = mouseWorldPos;
 
         if (Input.GetMouseButtonDown(0)) {
@@ -202,14 +201,19 @@ public class Controller : Singleton<Controller> {
 
         if (hitsToUi == 0) {
             RaycastHit hit;
-            float distance = 3f; //however far your ray shoots
+            float distance = 3f; //how far the ray shoots
             int layerMask = 1 << NodeLayer;
             //layerMask = ~layerMask; //invert layerMask
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             float rayRadius = NodeBehaviour.nodeRadius;
             if (!Physics.SphereCast(ray, rayRadius, out hit, distance, layerMask)) {
+                //node is placed correctly
                 var currentNode = carriedNode.GetComponent<NodeBehaviour>();
-                Debug.Log(currentNode.node.type);
+                Debug.Log(currentNode.node.GetType().ToString());
+
+                //Debug.Log(currentNode.node.Type());
+                currentNode.node.position = carriedNode.transform.position;
+                nodesPlaced.Add(currentNode.node);
                 state = status.none;
                 carriedNode.layer = NodeLayer;
             }
@@ -222,6 +226,11 @@ public class Controller : Singleton<Controller> {
             Debug.Log("You are hitting a UI element");
         }
     }
+
+    public List<SpellNode> getSpellNodes () {
+        return nodesPlaced;
+    }
+
     public bool initiate() {
         return true;
     }
