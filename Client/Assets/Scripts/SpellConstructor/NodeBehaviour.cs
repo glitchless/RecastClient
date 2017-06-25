@@ -12,7 +12,7 @@ public class NodeBehaviour : MonoBehaviour {
     Material material;
 
     void Start () {
-        node = new EnergyNode(EnergyNode.standartCapacity);
+        node = new EnergyNode();
         node.links = new List<Link>();
         this.transform.position = Input.mousePosition;
         var meshRenderer = this.gameObject.GetComponent<MeshRenderer>();
