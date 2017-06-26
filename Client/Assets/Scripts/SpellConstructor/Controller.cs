@@ -87,32 +87,34 @@ public class Controller : Singleton<Controller> {
     }
 
     private void linkingStart() {
-        linkVisual = new GameObject("Link");
-        linkVisual.transform.parent = linkBeginning.transform;
-        //LineRenderer link = linkVisual.GetComponent<LineRenderer>();
-        LineRenderer link;
-        if (true) {
-            link = linkVisual.AddComponent<LineRenderer>();
-            link.useWorldSpace = true;
-            link.positionCount = 2;
-            link.widthMultiplier = 0.2f;
-            link.material = new Material(Shader.Find("Particles/Additive"));
-            //link.startColor = Color.gray;
-            //link.endColor = Color.gray;
-            // A simple 2 color gradient with a fixed alpha of 1.0f.
-            float alpha = 1.0f;
-            Color c1 = Color.yellow;
-            Color c2 = Color.red;
-            Gradient gradient = new Gradient();
-            gradient.SetKeys(
-                new GradientColorKey[] { new GradientColorKey(c1, 0.0f), new GradientColorKey(c2, 1.0f) },
-                new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
-                );
-            link.colorGradient = gradient;
+        if (!hittingUI()) {
+            linkVisual = new GameObject("Link");
+            linkVisual.transform.parent = linkBeginning.transform;
+            //LineRenderer link = linkVisual.GetComponent<LineRenderer>();
+            LineRenderer link;
+            if (true) {
+                link = linkVisual.AddComponent<LineRenderer>();
+                link.useWorldSpace = true;
+                link.positionCount = 2;
+                link.widthMultiplier = 0.2f;
+                link.material = new Material(Shader.Find("Particles/Additive"));
+                //link.startColor = Color.gray;
+                //link.endColor = Color.gray;
+                // A simple 2 color gradient with a fixed alpha of 1.0f.
+                float alpha = 1.0f;
+                Color c1 = Color.yellow;
+                Color c2 = Color.red;
+                Gradient gradient = new Gradient();
+                gradient.SetKeys(
+                    new GradientColorKey[] { new GradientColorKey(c1, 0.0f), new GradientColorKey(c2, 1.0f) },
+                    new GradientAlphaKey[] { new GradientAlphaKey(alpha, 0.0f), new GradientAlphaKey(alpha, 1.0f) }
+                    );
+                link.colorGradient = gradient;
+            }
+            currentLink.start = linkBeginning.transform.position;
+            linkingUpdate();
+            state = status.linkingNodes;
         }
-        currentLink.start = linkBeginning.transform.position;
-        linkingUpdate();
-        state = status.linkingNodes;
     }
 
     void linkingUpdate() {
@@ -193,13 +195,7 @@ public class Controller : Singleton<Controller> {
     }
 
     void placeNode() {
-        PointerEventData cursor = new PointerEventData(EventSystem.current);
-        cursor.position = Input.mousePosition;
-        List<RaycastResult> objectsHit = new List<RaycastResult>(); // This section prepares a list for all objects hit with the raycast
-        EventSystem.current.RaycastAll(cursor, objectsHit);
-        int hitsToUi = objectsHit.Count;
-
-        if (hitsToUi == 0) {
+        if (!hittingUI()) {
             RaycastHit hit;
             float distance = 3f; //how far the ray shoots
             int layerMask = 1 << NodeLayer;
@@ -227,6 +223,14 @@ public class Controller : Singleton<Controller> {
         }
     }
 
+    public bool hittingUI () {
+        PointerEventData cursor = new PointerEventData(EventSystem.current);
+        cursor.position = Input.mousePosition;
+        List<RaycastResult> objectsHit = new List<RaycastResult>(); // This section prepares a list for all objects hit with the raycast
+        EventSystem.current.RaycastAll(cursor, objectsHit);
+        int hitsToUi = objectsHit.Count;
+        return hitsToUi != 0;
+}
     public List<SpellNode> getSpellNodes () {
         return nodesPlaced;
     }
