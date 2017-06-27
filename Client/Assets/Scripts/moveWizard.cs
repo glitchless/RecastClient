@@ -55,7 +55,7 @@ public class moveWizard : MonoBehaviour {
             handleJump();
         }
         else {
-            float castingFor = mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            castingFor = mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             if (castingFor < 0.9) {
                 if (castingFor > 0.4 && firstCast) {
                     cast();
