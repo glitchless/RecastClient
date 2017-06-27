@@ -14,23 +14,19 @@
 #include "network/NetworkUtils.hpp"
 #include "network/Socket.hpp"
 
-using namespace std;
-
 class SocketUDP : public Socket {
 public:
     using Socket::Socket;
-    SocketUDP(uint32_t port) : Socket::Socket() {
-        socketBoundPort = port;
-        createServerSocket();
-    }
 public:
-    void createServerSocket() override;
-    void createServerSocket(uint32_t port);
-    void sendTo(struct sockaddr_in &sendToAddr, const string &str);
-    string recvFrom(struct sockaddr_in &recvFromAddr);
+    void setReceiver(const std::string &host, int port);
 
-    void sendBytesTo(struct sockaddr_in &sendToAddr, const char *data, size_t num);
-    char* recvBytesFrom(struct sockaddr_in &recvFromAddr);
+    void sendTo(const std::string &str);
+    std::string recvFrom();
+
+    void sendBytesTo(const char *data, size_t num);
+    char* recvBytesFrom();
+public:
+    struct sockaddr_in connAddrCurrent;
 };
 
 #endif //RECAST_SERVER_SOCKET_UDP_HPP

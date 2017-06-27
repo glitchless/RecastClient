@@ -12,7 +12,6 @@
 #define RECAST_SERVER_NETWORKING_HPP
 
 #include "network/NetworkUtils.hpp"
-#include "network/NetworkListener.hpp"
 #include "network/Socket.hpp"
 #include "network/SocketTCP.hpp"
 #include "network/SocketUDP.hpp"

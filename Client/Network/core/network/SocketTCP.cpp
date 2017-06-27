@@ -10,14 +10,23 @@
 
 #include "network/SocketTCP.hpp"
 
-void SocketTCP::setRecvTimeout(int seconds, int microseconds) noexcept (false) {
-    struct timeval tv;
-    tv.tv_sec = seconds;
-    tv.tv_usec = microseconds;
+using namespace std;
 
-    if (setsockopt(socketDescr, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof(tv)) != 0) {
-        throw runtime_error("set rcvtimeout: " + string(strerror(errno)));
+void SocketTCP::connect(const string &host, int port) {
+    struct sockaddr_in addr = resolve(host.data(), port);
+
+    int sd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+    if (sd <= 0) {
+        throw runtime_error("[ERR] Failed to create socket (TCP): " + string(strerror(errno)));
     }
+
+    int connected = ::connect(sd, (struct sockaddr*)&addr, sizeof(addr));
+    if (connected == -1) {
+        ::close(sd);
+        throw runtime_error("[ERR] Failed to connect server (TCP): " + string(strerror(errno)));
+    }
+
+    socketDescr = sd;
 }
 
 void SocketTCP::send(const string &str) noexcept (false) {
@@ -28,7 +37,7 @@ void SocketTCP::send(const string &str) noexcept (false) {
     while (left > 0) {
         sent = ::send(socketDescr, str.data() + sent, str.size() - sent, flags);
         if (-1 == sent) {
-            throw runtime_error("write failed: " + string(strerror(errno)));
+            throw runtime_error("[ERR] Sending failed (TCP): " + string(strerror(errno)));
         }
 
         left -= sent;
@@ -43,7 +52,7 @@ void SocketTCP::sendBytes(const char *data, size_t num) noexcept (false) {
     while (left > 0) {
         sent = ::send(socketDescr, data + sent, num - sent, flags);
         if (-1 == sent) {
-            throw runtime_error("write failed: " + string(strerror(errno)));
+            throw runtime_error("[ERR] Sending failed (TCP): " + string(strerror(errno)));
         }
 
         left -= sent;
@@ -59,7 +68,7 @@ string SocketTCP::recv(size_t bytes) noexcept (false) {
 
         if (rc == -1 || rc == 0) {
             delete [] buffer;
-            throw runtime_error("read failed: " + string(strerror(errno)));
+            throw runtime_error("[ERR] Receiving failed (TCP): " + string(strerror(errno)));
         }
         r += rc;
     }
@@ -77,7 +86,7 @@ char* SocketTCP::recvBytes(size_t bytes) noexcept (false) {
 
         if (rc == -1 || rc == 0) {
             delete [] buffer;
-            throw runtime_error("read failed: " + string(strerror(errno)));
+            throw runtime_error("[ERR] Receiving failed (TCP): " + string(strerror(errno)));
         }
         r += rc;
     }
@@ -130,45 +139,3 @@ bool SocketTCP::hasData() noexcept (false) {
     if (n > 0) { return true; }
     return false;
 }
-
-void SocketTCP::createServerSocket(uint32_t port, uint32_t queueSize) noexcept (false) {
-    int sd = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (sd <= 0) {
-        throw runtime_error("socket: " + string(strerror(errno)));
-    }
-
-    setReuseAddress(sd);
-
-    struct sockaddr_in servAddr;
-    memset(&servAddr, 0, sizeof(servAddr));
-
-    servAddr.sin_family = AF_INET;
-    servAddr.sin_addr.s_addr = htonl(INADDR_ANY);
-    servAddr.sin_port = htons(port);
-
-    if (::bind(sd, (struct sockaddr*)&servAddr, sizeof(servAddr)) < 0) {
-        ::close(sd);
-        throw runtime_error("bind: " + string(strerror(errno)));
-    }
-
-    ::listen(sd, queueSize);
-    socketDescr = sd;
-    // setNonBlocked(true);
-}
-
-void SocketTCP::createServerSocket() noexcept (false) {
-    createServerSocket(socketBoundPort, socketQueueSize);
-}
-
-shared_ptr<SocketTCP> SocketTCP::accept() noexcept (false) {
-    struct sockaddr_in client;
-    memset(&client, 0, sizeof(client));
-    socklen_t cli_len = sizeof(client);
-
-    int cli_sd = ::accept(socketDescr, (struct sockaddr*)&client, &cli_len);
-    if (-1 == cli_sd) { return shared_ptr<SocketTCP>(); }
-    cerr << "new client: " << cli_sd << ", from: " << int2ipv4(client.sin_addr.s_addr) << endl;
-
-    return make_shared<SocketTCP>(cli_sd);
-}
-

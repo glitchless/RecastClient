@@ -23,12 +23,10 @@
 #include <netdb.h>      // gethostbyname
 #include <fcntl.h>
 
-using namespace std;
-
 const int DEFAULT_PORT_TCP = 1337;
 const int DEFAULT_PORT_UDP = 1338;
 
-string int2ipv4(uint32_t ip);
+std::string int2ipv4(uint32_t ip);
 struct sockaddr_in resolve(const char* host, int port);
 
 #endif //RECAST_NETWORK_UTILS_HPP

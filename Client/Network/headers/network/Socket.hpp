@@ -13,22 +13,18 @@
 
 #include "network/NetworkUtils.hpp"
 
-using namespace std;
-
 class Socket {
 public:
-    Socket()       : socketDescr(-1), socketBoundPort(0) {}
-    Socket(int sd) : socketDescr(sd), socketBoundPort(0) {}
+    Socket()       : socketDescr(-1) {}
+    Socket(int sd) : socketDescr(sd) {}
     ~Socket() { if (socketDescr > 0) ::close(socketDescr); }
 public:
     int  getSocketDescr() const noexcept { return socketDescr; }
     void setNonBlocked(bool option);
     void close() { ::close(socketDescr); }
-    virtual void createServerSocket() = 0;
 protected:
     void setReuseAddress(int sd);
     int socketDescr;
-    uint32_t socketBoundPort;
 };
 
 #endif //RECAST_SERVER_SOCKET_HPP
