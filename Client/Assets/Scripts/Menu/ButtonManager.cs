@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour {
-	public void startGameBtn(string firstLevel) {
-		SceneManager.LoadScene(firstLevel);
+	public void startSceneBtn(string scene) {
+		SceneManager.LoadScene(scene);
 	}
 	public void exitGameBtn() {
 		Application.Quit ();
