@@ -1,21 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class moveWizard : MonoBehaviour {
-
-	public int moveSpeed;
+    public GameObject spell;
+    public int moveSpeed;
 	private Rigidbody2D rb2; 
 	private Animator mAnimator;
 	private bool facingRight;
 	public bool jump;
 	public bool grounded;
     public bool casting = false;
+    bool firstCast = true;
     float castingFor = 0f;
 	public float jumpForce;
     System.Random rnd;
     bool lookUp;
-
 
     void Awake () 
 	{
@@ -54,19 +55,27 @@ public class moveWizard : MonoBehaviour {
             handleJump();
         }
         else {
-            float animationLength = mAnimator.GetCurrentAnimatorStateInfo(0).length;
-            if (castingFor < animationLength) {
-                castingFor += Time.deltaTime;
+            float castingFor = mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            if (castingFor < 0.9) {
+                if (castingFor > 0.4 && firstCast) {
+                    cast();
+                    firstCast = false;
+                }
             }
             else {
-                 Debug.Log("Casting ended");
+                Debug.Log("Casting ended");
                 mAnimator.SetBool("casting", false);
                 casting = false;
+                firstCast = true;
             }
         }
 	}
 
-	void FixedUpdate()
+    private void cast() {
+        Instantiate(spell, this.gameObject.transform);// this.gameObject.transform.rotation);
+    }
+
+    void FixedUpdate()
 	{
 		if(jump == true)
 		{
