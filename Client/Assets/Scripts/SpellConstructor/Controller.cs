@@ -102,8 +102,8 @@ public class Controller : Singleton<Controller> {
                 //link.endColor = Color.gray;
                 // A simple 2 color gradient with a fixed alpha of 1.0f.
                 float alpha = 1.0f;
-                Color c1 = Color.yellow;
-                Color c2 = Color.red;
+                Color c1 = Color.blue;
+                Color c2 = Color.cyan;
                 Gradient gradient = new Gradient();
                 gradient.SetKeys(
                     new GradientColorKey[] { new GradientColorKey(c1, 0.0f), new GradientColorKey(c2, 1.0f) },
