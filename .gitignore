@@ -1,0 +1,10 @@
+
+Client/SpellConstructor\.x86
+
+Client/SpellConstructor\.exe
+
+Client/SpellConstructor_Data/output_log\.txt
+
+*.x86_64
+
+*.x86
