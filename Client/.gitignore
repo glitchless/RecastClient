@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# .idea meta
+.idea/
+
+# cmake build meta
+cmake-build-debug/
