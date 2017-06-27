@@ -1,24 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace DigitalRuby.PyroParticles
-{
+namespace DigitalRuby.PyroParticles {
     [System.Serializable]
-    public struct RangeOfIntegers
-    {
+    public struct RangeOfIntegers {
         public int Minimum;
         public int Maximum;
     }
 
     [System.Serializable]
-    public struct RangeOfFloats
-    {
+    public struct RangeOfFloats {
         public float Minimum;
         public float Maximum;
     }
 
-    public class FireBaseScript : MonoBehaviour
-    {
+    public class FireBaseScript : MonoBehaviour {
         [Tooltip("Optional audio source to play once when the script starts.")]
         public AudioSource AudioSource;
 
@@ -49,23 +45,18 @@ namespace DigitalRuby.PyroParticles
         private float stopTimeMultiplier;
         private float stopTimeIncrement;
 
-        private IEnumerator CleanupEverythingCoRoutine()
-        {
+        private IEnumerator CleanupEverythingCoRoutine() {
             // 2 extra seconds just to make sure animation and graphics have finished ending
             yield return new WaitForSeconds(StopTime + 2.0f);
 
             GameObject.Destroy(gameObject);
         }
 
-        private void StartParticleSystems()
-        {
-            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>())
-            {
+        private void StartParticleSystems() {
+            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>()) {
                 if (ManualParticleSystems == null || ManualParticleSystems.Length == 0 ||
-                    System.Array.IndexOf(ManualParticleSystems, p) < 0)
-                {
-                    if (p.startDelay == 0.0f)
-                    {
+                    System.Array.IndexOf(ManualParticleSystems, p) < 0) {
+                    if (p.startDelay == 0.0f) {
                         // wait until next frame because the transform may change
                         p.startDelay = 0.01f;
                     }
@@ -74,17 +65,14 @@ namespace DigitalRuby.PyroParticles
             }
         }
 
-        protected virtual void Awake()
-        {
+        protected virtual void Awake() {
             Starting = true;
-            int fireLayer = UnityEngine.LayerMask.NameToLayer("FireLayer");
+            int fireLayer = LayerMask.NameToLayer("FireLayer");
             UnityEngine.Physics.IgnoreLayerCollision(fireLayer, fireLayer);
         }
 
-        protected virtual void Start()
-        {
-            if (AudioSource != null)
-            {
+        protected virtual void Start() {
+            if (AudioSource != null) {
                 AudioSource.Play();
             }
 
@@ -101,105 +89,85 @@ namespace DigitalRuby.PyroParticles
             // If we implement the ICollisionHandler interface, see if any of the children are forwarding
             // collision events. If they are, hook into them.
             ICollisionHandler handler = (this as ICollisionHandler);
-            if (handler != null)
-            {
+            if (handler != null) {
                 FireCollisionForwardScript collisionForwarder = GetComponentInChildren<FireCollisionForwardScript>();
-                if (collisionForwarder != null)
-                {
+                if (collisionForwarder != null) {
                     collisionForwarder.CollisionHandler = handler;
                 }
             }
         }
 
-        protected virtual void Update()
-        {
+        protected virtual void Update() {
             // reduce the duration
             Duration -= Time.deltaTime;
-            if (Stopping)
-            {
+            if (Stopping) {
                 // increase the stop time
                 stopTimeIncrement += Time.deltaTime;
-                if (stopTimeIncrement < StopTime)
-                {
+                if (stopTimeIncrement < StopTime) {
                     StopPercent = stopTimeIncrement * stopTimeMultiplier;
                 }
             }
-            else if (Starting)
-            {
+            else if (Starting) {
                 // increase the start time
                 startTimeIncrement += Time.deltaTime;
-                if (startTimeIncrement < StartTime)
-                {
+                if (startTimeIncrement < StartTime) {
                     StartPercent = startTimeIncrement * startTimeMultiplier;
                 }
-                else
-                {
+                else {
                     Starting = false;
                 }
             }
-            else if (Duration <= 0.0f)
-            {
+            else if (Duration <= 0.0f) {
                 // time to stop, no duration left
                 Stop();
             }
         }
 
-        public static void CreateExplosion(Vector3 pos, float radius, float force)
-        {
-            if (force <= 0.0f || radius <= 0.0f)
-            {
+        public static void CreateExplosion(Vector3 pos, float radius, float force) {
+            if (force <= 0.0f || radius <= 0.0f) {
                 return;
             }
 
             // find all colliders and add explosive force
-            Collider[] objects = UnityEngine.Physics.OverlapSphere(pos, radius);
-            foreach (Collider h in objects)
-            {
+            Collider[] objects = Physics.OverlapSphere(pos, radius);
+            foreach (Collider h in objects) {
                 Rigidbody r = h.GetComponent<Rigidbody>();
-                if (r != null)
-                {
+                if (r != null) {
                     r.AddExplosionForce(force, pos, radius);
                 }
             }
         }
 
-        public virtual void Stop()
-        {
-            if (Stopping)
-            {
+        public virtual void Stop() {
+            if (Stopping) {
                 return;
             }
             Stopping = true;
 
             // cleanup particle systems
-            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>())
-            {
+            foreach (ParticleSystem p in gameObject.GetComponentsInChildren<ParticleSystem>()) {
                 p.Stop();
             }
 
             StartCoroutine(CleanupEverythingCoRoutine());
         }
 
-        public bool Starting
-        {
+        public bool Starting {
             get;
             private set;
         }
 
-        public float StartPercent
-        {
+        public float StartPercent {
             get;
             private set;
         }
 
-        public bool Stopping
-        {
+        public bool Stopping {
             get;
             private set;
         }
 
-        public float StopPercent
-        {
+        public float StopPercent {
             get;
             private set;
         }

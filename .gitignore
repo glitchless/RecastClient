@@ -8,3 +8,5 @@ Client/SpellConstructor_Data/output_log\.txt
 *.x86_64
 
 *.x86
+
+*.exe

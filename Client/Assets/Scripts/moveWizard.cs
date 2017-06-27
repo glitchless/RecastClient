@@ -55,24 +55,33 @@ public class moveWizard : MonoBehaviour {
             handleJump();
         }
         else {
-            castingFor = mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            if (castingFor < 0.9) {
-                if (castingFor > 0.4 && firstCast) {
-                    cast();
-                    firstCast = false;
-                }
-            }
-            else {
-                Debug.Log("Casting ended");
-                mAnimator.SetBool("casting", false);
-                casting = false;
-                firstCast = true;
-            }
+            //castingFor = mAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            //if (castingFor < 0.9) {
+            //    if (castingFor > 0.4 && firstCast) {
+            //        cast();
+            //        firstCast = false;
+            //    }
+            //}
+            //else {
+            //    Debug.Log("Casting ended");
+            //    mAnimator.SetBool("casting", false);
+            //    casting = false;
+            //    firstCast = true;
+            //}
         }
 	}
 
     private void cast() {
-        Instantiate(spell, this.gameObject.transform);// this.gameObject.transform.rotation);
+        //var lookPos = target.position - transform.position;
+        //lookPos.y = 0;
+        //var rotation = Quaternion.LookRotation(lookPos);
+        //rotation *= Quaternion.Euler(0, 90, 0); // this add a 90 degrees Y rotation
+        if (facingRight) {
+            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, 90, 0));
+        }
+        else {
+            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, -90, 0));
+        }
     }
 
     void FixedUpdate()
@@ -97,6 +106,12 @@ public class moveWizard : MonoBehaviour {
 		Debug.Log (rb2.position.x);
 		Debug.Log (rb2.position.y);
 	}
+
+    void castingStop() {
+        Debug.Log("Stop cast");
+        casting = false;
+        mAnimator.SetBool("casting", false);
+    }
 
 	void handleCasting()
 	{

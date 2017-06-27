@@ -1,0 +1,281 @@
+Mono path[0] = 'E:/Projects/RecastClient/Client/Client_Data/Managed'
+Mono path[1] = 'E:/Projects/RecastClient/Client/Client_Data/Mono'
+Mono config path = 'E:/Projects/RecastClient/Client/Client_Data/Mono/etc'
+PlayerConnection initialized from E:/Projects/RecastClient/Client/Client_Data (debug = 0)
+PlayerConnection initialized network socket : 0.0.0.0 55217
+Multi-casting "[IP] 192.168.199.5 [Port] 55217 [Flags] 2 [Guid] 3501390550 [EditorId] 2197881464 [Version] 1048832 [Id] WindowsPlayer(1-PC) [Debug] 0" to [225.0.0.222:54997]...
+Started listening to [0.0.0.0:55217]
+PlayerConnection already initialized - listening to [0.0.0.0:55217]
+Player data archive not found at `E:/Projects/RecastClient/Client/Client_Data/data.unity3d`, using local filesystemInitialize engine version: 5.6.1f1 (2860b30f0b54)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 750 (ID=0x1381)
+    Vendor:   NVIDIA
+    VRAM:     972 MB
+    Driver:   21.21.13.7633
+Begin MonoManager ReloadAssembly
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\Client_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading E:\Projects\RecastClient\Client\Client_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.020 seconds
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: E:\Projects\RecastClient\Client\Client_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.981208 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.757710 ms
+-5.24
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:showCoordinates() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:97)
+moveWizard:Awake() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:30)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 97)
+
+-6.679999
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:showCoordinates() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:98)
+moveWizard:Awake() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:30)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 98)
+
+System memory in use before: 19.7 MB.
+System memory in use after: 19.7 MB.
+
+Unloading 12 unused Assets to reduce memory usage. Loaded Objects now: 415.
+Total: 0.402184 ms (FindLiveObjects: 0.031632 ms CreateObjectMapping: 0.012652 ms MarkObjects: 0.303069 ms  DeleteObjects: 0.053323 ms)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Casting started
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:handleCasting() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:106)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:54)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 106)
+
+Casting ended
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+moveWizard:Update() (at E:\Projects\RecastClient\Client\Assets\Scripts\moveWizard.cs:65)
+ 
+(Filename: E:/Projects/RecastClient/Client/Assets/Scripts/moveWizard.cs Line: 65)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.620598 ms
+System memory in use before: 20.3 MB.
+System memory in use after: 20.1 MB.
+
+Unloading 101 unused Assets to reduce memory usage. Loaded Objects now: 328.
+Total: 0.550706 ms (FindLiveObjects: 0.046996 ms CreateObjectMapping: 0.017473 ms MarkObjects: 0.198832 ms  DeleteObjects: 0.285294 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 3044 -> priority: 1 
+  Thread -> id: 44e8 -> priority: 1 
