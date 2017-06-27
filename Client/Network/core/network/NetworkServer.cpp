@@ -24,7 +24,7 @@ void NetworkServer::run() {
     try {
         if (isTCP) {
             SocketTCP sock(port, 25);
-            cout << "Server is running on port " << port << " for TCP connections";
+            cout << "Server is running on port " << port << " for TCP connections" << endl;
             fork();
 
             isRunning = true;
@@ -34,13 +34,13 @@ void NetworkServer::run() {
             }
         } else {
             SocketUDP sock(port);
-            cout << "Server is running on port " << port << " for UDP connections";
+            cout << "Server is running on port " << port << " for UDP connections" << endl;
             fork();
 
             isRunning = true;
             while (isRunning) {
                 shared_ptr<SocketUDP> client = make_shared<SocketUDP>(sock);
-                listenFor(client);
+                listenForBytes(client);
             }
         }
     } catch (const exception &e) {
@@ -60,6 +60,18 @@ void NetworkServer::listenFor(shared_ptr<SocketTCP> client) {
             }
 }
 
+void NetworkServer::listenForBytes(shared_ptr<SocketTCP> client) {
+    client->setRecvTimeout(30, 0); // s, ms
+    while (true) try {
+            char *request = client->recvBytes(1024);
+            char *response = exchange(request);
+            client->send(response);
+        } catch(const exception &e) {
+            cerr << "[ERR] An exception occurred: " << e.what() << endl;
+            return;
+            }
+}
+
 void NetworkServer::listenFor(shared_ptr<SocketUDP> client) {
     while(true) try {
             struct sockaddr_in senderAddr;
@@ -72,25 +84,66 @@ void NetworkServer::listenFor(shared_ptr<SocketUDP> client) {
         }
 }
 
+void NetworkServer::listenForBytes(shared_ptr<SocketUDP> client) {
+    while(true) try {
+            struct sockaddr_in senderAddr;
+            char *request = client->recvBytesFrom(senderAddr);
+            char *response = exchange(request);
+            client->sendTo(senderAddr, response);
+        } catch(const exception &e) {
+            cerr << "[ERR] An exception occurred: " << e.what() << endl;
+            return;
+        }
+}
+
 void NetworkServer::shutdown() {
     isRunning = false;
 }
 
-string NetworkServer::exchange(const string action) {
-    // Game logic goes here
+string NetworkServer::exchange(const string request) {
+    nofityListener(const_cast<char*>(request.data()));
 
-    // Answer to client (difference snapshots? yes/no answer?)
-    string state = check(action);
-
-    return state;
+    return request;
 }
 
-string NetworkServer::check(const string action) {
-    // Example
-    string result = "DENIED";
-    if (action.find("CAST") != -1) {
-        // Checking appliability
-        result = "APPLIED";
+char* NetworkServer::exchange(char *request) {
+    nofityListener(request);
+
+    return request;
+}
+
+bool NetworkServer::registerListener(NetworkListener* listener) {
+    vector<NetworkListener*>::iterator temp = find(listeners.begin(), listeners.end(), listener);
+    if (temp != listeners.end()) {
+        cout << "[ERR] Listener id " << listener->getId() << " is already registered" << endl;
+        return false;
     }
-    return result;
+    listeners.push_back(listener);
+    cout << "[INFO] Registered listener id " << listener->getId() << endl;
+    return true;
+}
+
+bool NetworkServer::removeListener(NetworkListener *listener) {
+    vector<NetworkListener*>::iterator temp = find(listeners.begin(), listeners.end(), listener);
+    if (temp == listeners.end()) {
+        cout << "[ERR] Listener id " << listener->getId() << " is not registered" << endl;
+        return false;
+    } else {
+        listeners.erase(remove(listeners.begin(), listeners.end(), listener));
+        cout << "[INFO] Unregistered listener id " << listener->getId() << endl;
+        return true;
+    }
+}
+
+bool NetworkServer::nofityListener(char *request) {
+    int id = request[0];
+//    int id = 0; // DEBUG
+    vector<NetworkListener*>::iterator temp = find_if(
+            listeners.begin(), listeners.end(), [&id](NetworkListener* listener) { return listener->getId() == id; });
+
+    if (temp == listeners.end()) {
+        return false;
+    } else {
+        (*temp)->onPacket(request);
+    }
 }
