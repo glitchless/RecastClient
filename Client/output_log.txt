@@ -1,2 +1,0 @@
-There should be 'SpellConstructor_Data'
-folder next to the executable
