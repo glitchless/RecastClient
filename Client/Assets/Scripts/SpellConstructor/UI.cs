@@ -85,7 +85,7 @@ public class UI : MonoBehaviour {
                 //spell_byte = spell_byte.
             }
             counter++;
-            Networking.send_tcp(Networking.DEFAULT_SERVER_HOSTNAME, Networking.DEFAULT_PORT_TCP_LISTEN, node_serialized, Networking.DEFAULT_NODE_LISTENER);
+            //Networking.send_tcp(Networking.DEFAULT_SERVER_HOSTNAME, Networking.DEFAULT_PORT_TCP_LISTEN, node_serialized, Networking.DEFAULT_NODE_LISTENER);
         }
     }
 

@@ -122,4 +122,8 @@ public class Networking
     {
         return Convert.ToInt32(data[0]);
     }
+
+    public static Entity[] Parse(byte[] entityDate) {
+        return new Entity[0];
+    }
 }
