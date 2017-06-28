@@ -150,8 +150,8 @@ public class Controller : Singleton<Controller> {
                 Debug.Log("Link is " + link.Equals(currentLink) + " to current");
             }
             currentLink.endId = endNode.node.id;
+            currentLink.startId = startNode.node.id;
             startNode.node.links.Add(currentLink);
-            currentLink.endId = startNode.node.id;
             endNode.node.links.Add(currentLink.reverse());
         }
         else {

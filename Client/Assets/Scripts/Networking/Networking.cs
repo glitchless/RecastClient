@@ -12,7 +12,8 @@ public class Networking
     public const Int32 DEFAULT_PORT_UDP = 1338;
     public const Int32 DEFAULT_PORT_TCP_LISTEN = 1339;
     public const Int32 DEFAULT_PORT_UDP_LISTEN = 1340;
-    String SERVER_HOSTNAME = "localhost";
+    public const String DEFAULT_SERVER_HOSTNAME = "localhost";
+    public const Int32 DEFAULT_NODE_LISTENER = 0;
 
     public static Byte[] recv_udp()
     {

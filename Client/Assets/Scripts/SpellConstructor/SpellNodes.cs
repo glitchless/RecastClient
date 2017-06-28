@@ -11,13 +11,19 @@ public class Link: System.IEquatable<Link> {
         this.start = start;
         this.end = end;
     }
+    public Link(Vector3 start, Vector3 end, uint startId, uint endId) {
+        this.start = start;
+        this.startId = startId;
+        this.start = start;
+        this.endId = endId;
+    }
     public Vector3 start;
     public Vector3 end;
-
+    public uint startId;
     public uint endId;
 
     public Link reverse () {
-        return new Link(this.end, this.start);
+        return new Link(this.end, this.start, this.endId, this.startId);
     }
 
     public bool Equals(Link other)
@@ -33,7 +39,7 @@ public class SpellNode {
     public Vector3 position;
     public List<Link> links;
     public uint id;
-    public static readonly Dictionary<string, uint> typeToId = new Dictionary<string, uint> { { "SpellNode", 0 }, { "EnergyNode", 1 }, { "HeaterNode", 2 }, { "AimNode", 3 } };
+    public static readonly Dictionary<string, uint> typeToId = new Dictionary<string, uint> { { "SpellNode", 0 }, { "EnergyNode", 1 }, { "HeaterNode", 2 }, { "AimNode", 3 }, { "GeneratorNode", 4 } };
 }
 
 public class EnergyNode : SpellNode {
@@ -53,5 +59,10 @@ public class AimNode : EnergyNode {
     //public const float standartForce = 10f;
     //float moveForce;
 }
+
+public class GeneratorNode : EnergyNode {
+    public GeneratorNode() : base() {}
+}
+
 
 
