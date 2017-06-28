@@ -1,0 +1,19 @@
+/**
+ * @file Networking.hpp
+ * @brief Networking quick-include header file
+ * @author StealthTech
+ * @project Recast-client
+ * @date 27.06.17
+ * @email st3althtech@mail.ru
+ *
+ **/
+
+#ifndef RECAST_SERVER_NETWORKING_HPP
+#define RECAST_SERVER_NETWORKING_HPP
+
+#include "network/NetworkUtils.hpp"
+#include "network/Socket.hpp"
+#include "network/SocketTCP.hpp"
+#include "network/SocketUDP.hpp"
+
+#endif //RECAST_SERVER_NETWORKING_HPP
