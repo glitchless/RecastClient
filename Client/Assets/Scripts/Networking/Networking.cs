@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.IO;
 
 public class Networking
 {
@@ -71,7 +72,7 @@ public class Networking
             String responseData = String.Empty;
 
             Int32 bytes = stream.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+            responseData = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
             Debug.Log("[INFO] Received data (TCP): " + responseData);
 
             stream.Close();
@@ -112,9 +113,8 @@ public class Networking
     private static Byte[] mark_listener_id(Byte[] data, Int32 listenerId)
     {
         byte[] marked_data = new byte[data.Length + 1];
-        data.CopyTo(marked_data, 1);
         marked_data[0] = Convert.ToByte(listenerId);
-        // data = marked_data;
+        Array.Copy(data, 0, marked_data, 1, data.Length);
         return marked_data;
     }
 
