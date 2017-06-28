@@ -56,7 +56,8 @@ namespace DigitalRuby.PyroParticles
 
             Vector3 dir = ProjectileDirection * ProjectileColliderSpeed;
             dir = ProjectileColliderObject.transform.rotation * dir;
-            ProjectileColliderObject.GetComponent<Rigidbody>().velocity = dir;
+            ProjectileColliderObject.GetComponent<Rigidbody2D>().velocity = dir;
+            //this.GetComponentInChildren<Rigidbody2D>().velocity = dir;
         }
 
         protected override void Start()
@@ -83,7 +84,7 @@ namespace DigitalRuby.PyroParticles
             {
                 foreach (ParticleSystem p in ProjectileDestroyParticleSystemsOnCollision)
                 {
-                    GameObject.Destroy(p, 0.1f);
+                    GameObject.Destroy(p);
                 }
             }
 

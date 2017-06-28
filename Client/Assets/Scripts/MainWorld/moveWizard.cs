@@ -29,6 +29,7 @@ public class moveWizard : MonoBehaviour {
 		jumpForce = 10.0f;
 		showCoordinates ();
         rnd = new System.Random();
+        WorldController.Instance.ping();
     }
 
 	void OnCollisionEnter2D(Collision2D hit)
@@ -77,10 +78,10 @@ public class moveWizard : MonoBehaviour {
         //var rotation = Quaternion.LookRotation(lookPos);
         //rotation *= Quaternion.Euler(0, 90, 0); // this add a 90 degrees Y rotation
         if (facingRight) {
-            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, 90, 90));
+            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, 90, 0));
         }
         else {
-            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, -90, 90));
+            Instantiate(spell, this.gameObject.transform.position, Quaternion.Euler(0, -90, 0));
         }
     }
 
